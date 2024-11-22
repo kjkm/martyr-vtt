@@ -1,0 +1,35 @@
+.ToggleButton {
+  background-color: var(--background-color-dark);
+
+  height: auto;
+  width: auto;
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  padding: var(--icon-padding);
+
+  border-top: 1px solid transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+
+  cursor: pointer;
+  transition: background-color var(--animation-duration) ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ToggleButton svg {
+  filter: invert(0.5);
+  height: var(--icon-height);
+  width: var(--icon-width);
+}
+
+.ToggleButton:hover {
+  border: 1px solid var(--border-color-light);
+  border-top: 1px solid transparent;
+}
+
+.ToggleButton:hover svg {
+  filter: invert(1);
+}
