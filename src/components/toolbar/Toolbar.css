@@ -1,6 +1,6 @@
 .Toolbar {
   width: 100%;
-  height: calc(var(--icon-height) + var(--icon-padding) * 2);
+  height: calc(var(--icon-height) + var(--icon-padding) * 2 + 10px);
   padding: var(--icon-spacing);
   background-color: var(--background-color-dark);
   position: absolute;
@@ -10,6 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border-top: 1px solid var(--border-color-dark);
+  box-shadow: 0 -10px 10px -5px var(--shadow-color);
 }
 
 .Toolbar .Toolbar-icon-container {
