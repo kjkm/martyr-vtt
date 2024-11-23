@@ -1,0 +1,25 @@
+.Toolbar {
+  width: 100%;
+  height: calc(var(--icon-height) + var(--icon-padding) * 2);
+  padding: var(--icon-spacing);
+  background-color: var(--background-color-dark);
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Toolbar .Toolbar-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--icon-spacing);
+}
+
+.Toolbar .Toolbar-icon-container svg {
+  width: var(--icon-width);
+  height: var(--icon-height);
+}
