@@ -12,17 +12,33 @@
   align-items: center;
 
   border-top: 1px solid var(--border-color-dark);
-  box-shadow: 0 -10px 10px -5px var(--shadow-color);
+  box-shadow: 0 -10px 10px -5px var(--shadow-color); /* Top shadow */
 }
 
 .Toolbar .Toolbar-icon-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--icon-spacing);
+  gap: var(--item-spacing);
 }
 
 .Toolbar .Toolbar-icon-container svg {
   width: var(--icon-width);
   height: var(--icon-height);
+}
+
+.Toolbar .Toolbar-icon-container .Toolbar-icon {
+  border: none;
+  background-color: var(--background-color-light);
+  border-radius: var(--border-radius);
+  padding: var(--icon-padding);
+  cursor: pointer;
+  transition: background-color var(--animation-duration) ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Toolbar .Toolbar-icon-container .Toolbar-icon:hover {
+  background-color: transparent;
 }
