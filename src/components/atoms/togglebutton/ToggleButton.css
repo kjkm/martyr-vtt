@@ -7,6 +7,8 @@
   border-radius: var(--border-radius);
   padding: var(--icon-padding);
 
+  margin-top: -1px;
+
   border-top: 1px solid transparent;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -17,6 +19,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  box-shadow: 0 10px 10px -5px var(--shadow-color),
+    -10px 0 10px -5px var(--shadow-color), 10px 0 10px -5px var(--shadow-color);
 }
 
 .ToggleButton svg {

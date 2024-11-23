@@ -4,7 +4,7 @@ import ToggleButton from "../atoms/togglebutton/ToggleButton";
 import "./MapDrawer.css";
 
 function MapDrawer() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);

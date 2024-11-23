@@ -2,8 +2,8 @@ import "./Map.css";
 
 function Map() {
   return (
-    <div>
-      <h1>Map</h1>
+    <div className="Map">
+      <h1>No map loaded.</h1>
     </div>
   );
 }
