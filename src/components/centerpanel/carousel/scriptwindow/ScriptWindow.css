@@ -3,13 +3,14 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  height: 100%;
+  height: calc( 100% - (var(--icon-height) + var(--icon-padding) * 2 + var(--item-spacing)) ); /* Subtract icon height */
+  margin-top: var(--icon-height); /* Add icon height */
   padding: 10px;
-  padding-top: 20px; /* Add more top padding */
+  padding-top: calc((var(--icon-height) + var(--icon-padding) * 2 var(--item-spacing)) * 2); /* Add more top padding */
   background-color: var(--background-color-light);
   border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
-  overflow-y: auto;
+  overflow-y: auto !important;
 }
 
 .ScriptWindow-messages {
