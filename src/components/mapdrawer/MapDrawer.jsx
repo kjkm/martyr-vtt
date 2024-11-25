@@ -1,6 +1,8 @@
 import { useState } from "react";
-import Map from "../map/Map";
-import ToggleButton from "../atoms/togglebutton/ToggleButton";
+import Map from "./map/Map";
+import ToggleButton from "./togglebutton/ToggleButton";
+import MapSummary from "./mapsummary/MapSummary";
+import DrawerTab from "./drawertab/DrawerTab";
 import "./MapDrawer.css";
 
 function MapDrawer() {
@@ -15,17 +17,9 @@ function MapDrawer() {
       <div className="MapDrawer-container">
         <Map />
       </div>
-      <ToggleButton onClick={toggleCollapse}>
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M9 20L3 17V4L9 7M9 20L15 17M9 20V7M15 17L21 20V7L15 4M15 17V4M9 7L15 4"
-            stroke="#000"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </ToggleButton>
+      <div className="MapDrawer-tab">
+        <DrawerTab toggleCollapse={toggleCollapse}/>
+      </div>
     </div>
   );
 }

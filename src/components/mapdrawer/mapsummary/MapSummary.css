@@ -1,0 +1,24 @@
+.MapSummary {
+  width: calc((var(--icon-width) + var(--icon-padding) * 3 + 10px) * 2);
+  height: calc(var(--icon-height) + var(--icon-padding) * 2);
+  background-color: black;
+  border-bottom: 1px solid var(--border-color-dark);
+  border-left: 1px solid var(--border-color-dark);
+  border-right: 1px solid var(--border-color-dark);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--icon-padding);
+  transform: translateY(calc(var(--display-offset) * -1));
+}
+
+.MapSummary-left {
+  border-bottom-left-radius: var(--border-radius);
+  border-right: 1px solid var(--border-color-dark);
+}
+
+.MapSummary-right {
+  border-bottom-right-radius: var(--border-radius);
+  border-left: 1px solid var(--border-color-dark);
+}
