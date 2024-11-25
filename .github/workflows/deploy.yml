@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  # Deploy when pushing to the `main` branch
-  merge:
+  pull_request:
     branches:
       - main  # Deploy when merging to the `main` branch
 
