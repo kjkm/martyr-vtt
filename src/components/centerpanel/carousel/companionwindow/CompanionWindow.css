@@ -1,0 +1,47 @@
+.CompanionWindow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--background-color-light);
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  overflow-y: auto;
+}
+
+.CompanionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--background-color-dark);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius);
+  width: 150px;
+  text-align: center;
+}
+
+.CompanionCard-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.CompanionCard-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CompanionCard-name {
+  margin: 0;
+  font-size: 1.2em;
+  color: white;
+}
+
+.CompanionCard-stats {
+  margin: 5px 0;
+  color: white;
+}

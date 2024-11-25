@@ -1,0 +1,72 @@
+.ScriptWindow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  padding-top: 20px; /* Add more top padding */
+  background-color: var(--background-color-light);
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  overflow-y: auto;
+}
+
+.ScriptWindow-messages {
+  flex-grow: 1; /* Allow messages container to take up remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align messages to the bottom */
+  overflow-y: auto;
+}
+
+.ScriptWindow-message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  max-width: 80%;
+}
+
+.ScriptWindow-message-content {
+  word-wrap: break-word;
+}
+
+.ScriptWindow-message.user {
+  align-self: flex-end;
+  background-color: #c54848;
+  color: white;
+}
+
+.ScriptWindow-message.bot {
+  align-self: flex-start;
+  background-color: #0c40cf;
+  color: white;
+}
+
+.ScriptWindow-form {
+  display: flex;
+  border-top: 1px solid var(--border-color-dark);
+  padding-top: 10px;
+}
+
+.ScriptWindow-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  margin-right: 10px;
+}
+
+.ScriptWindow-sendButton {
+  padding: 10px 20px;
+  background-color: var(--background-color-dark);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ScriptWindow-sendButton:hover {
+  background-color: var(--background-color-darker);
+}

@@ -6,6 +6,7 @@
   height: 100%;
   box-sizing: border-box;
   padding: 10px;
+  padding-bottom: 60px;
   background-color: var(--background-color-light);
   border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
