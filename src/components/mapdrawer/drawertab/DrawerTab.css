@@ -26,13 +26,13 @@
 }
 
 .DrawerTab .SummaryContainer-left {
-  border-bottom-left-radius: var(--border-radius);
+  border-bottom-left-radius: calc(var(--border-radius) * 1.4);
   border-right: 1px solid var(--border-color-dark);
   transform: translateX(10px);
 }
 
 .DrawerTab .SummaryContainer-right {
-  border-bottom-right-radius: var(--border-radius);
+  border-bottom-right-radius: calc(var(--border-radius) * 1.4);
   border-left: 1px solid var(--border-color-dark);
   transform: translateX(-10px);
 }
