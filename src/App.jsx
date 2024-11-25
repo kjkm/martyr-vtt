@@ -8,7 +8,7 @@ import CompanionWindow from "./components/centerpanel/carousel/companionwindow/C
 import "./App.css";
 
 function App() {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(2);
   const [messages, setMessages] = useState([
     { type: "user", content: "hi" },
     { type: "bot", content: "hey" },
@@ -41,6 +41,7 @@ function App() {
   ];
 
   const handleSlideChange = (index) => {
+    console.log("Slide change:", index); // Debugging log
     setActiveSlide(index);
   };
 
@@ -53,17 +54,17 @@ function App() {
     <div className="App">
       <MapDrawer />
       <CenterPanel activeSlide={activeSlide}>
-        <Slide>Character</Slide>
         <Slide>Rulebook</Slide>
+        <Slide>Character</Slide>
         <Slide>Playmat</Slide>
-        <Slide>
-          <CompanionWindow companions={companions} />
-        </Slide>
         <Slide>
           <ScriptWindow messages={messages} onSendMessage={handleSendMessage} />
         </Slide>
+        <Slide>
+          <CompanionWindow companions={companions} />
+        </Slide>
       </CenterPanel>
-      <Toolbar onSlideChange={handleSlideChange} />
+      <Toolbar onSlideChange={handleSlideChange} activeSlide={activeSlide} />
     </div>
   );
 }

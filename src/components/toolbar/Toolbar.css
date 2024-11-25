@@ -39,6 +39,16 @@
   align-items: center;
 }
 
+.Toolbar-icon.selected {
+  /* background-color: var(--selected-color) !important; */
+  filter: brightness(2.0);
+  background-color: transparent;
+}
+
 .Toolbar .Toolbar-icon-container .Toolbar-icon:hover {
+  background-color: transparent;
+}
+
+.Toolbar .Toolbar-icon-container .Toolbar-icon.selected {
   background-color: transparent;
 }
