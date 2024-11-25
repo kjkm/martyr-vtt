@@ -16,23 +16,23 @@
   justify-content: center;
   align-items: center;
   padding: var(--display-offset);
-  border: 1px solid var(--border-color-dark);
-
+  border: 1px solid var(--border-color-darker);
   z-index: -1;
-
-  top: -10px;
-
+  margin-top: calc(var(--display-offset) * -0.5);
   overflow: hidden;
+  background-color: var(--background-color-darker);
+  box-shadow: 0 10px 10px -5px var(--shadow-color),
+    -10px 0 10px -5px var(--shadow-color), 10px 0 10px -5px var(--shadow-color);
 }
 
 .DrawerTab .SummaryContainer-left {
   border-bottom-left-radius: calc(var(--border-radius) * 1.4);
-  border-right: 1px solid var(--border-color-dark);
+  border-right: 1px solid var(--border-color-darker);
   transform: translateX(10px);
 }
 
 .DrawerTab .SummaryContainer-right {
   border-bottom-right-radius: calc(var(--border-radius) * 1.4);
-  border-left: 1px solid var(--border-color-dark);
+  border-left: 1px solid var(--border-color-darker);
   transform: translateX(-10px);
 }
