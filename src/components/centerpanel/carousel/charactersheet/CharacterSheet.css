@@ -2,29 +2,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   background-color: var(--background-color-light);
-  border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  height: 100%;
+  width: min(100%, 400px);
 }
 
 .CharacterSheet-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: center;
 }
 
 .CharacterSheet-thumbnail {
-  width: 100px;
-  height: 100px;
+  width: min(100px, 20vw);
+  height: min(100px, 20vw);
   border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
+  /* object-fit: cover; */
 }
 
 .CharacterSheet-name {
