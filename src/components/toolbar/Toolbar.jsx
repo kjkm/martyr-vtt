@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Toolbar.css";
-
 function Toolbar({ onSlideChange, activeSlide }) {
-  const [selectedButton, setSelectedButton] = useState(0);
+  const [selectedButton, setSelectedButton] = useState(activeSlide);
 
   useEffect(() => {
     setSelectedButton(activeSlide);
@@ -16,7 +15,10 @@ function Toolbar({ onSlideChange, activeSlide }) {
   return (
     <div className="Toolbar">
       <div className="Toolbar-icon-container" >
-        <button className={`Toolbar-icon ${selectedButton === 0 ? "selected" : ""}`} onClick={() => handleButtonClick(0)}>
+      <button
+          className={`Toolbar-icon ${selectedButton === 0 ? "selected" : ""}`}
+          onClick={() => handleButtonClick(0)}
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -31,7 +33,10 @@ function Toolbar({ onSlideChange, activeSlide }) {
             />
           </svg>
         </button>
-        <button className={`Toolbar-icon ${selectedButton === 1 ? "selected" : ""}`} onClick={() => handleButtonClick(1)}>
+        <button
+          className={`Toolbar-icon ${selectedButton === 1 ? "selected" : ""}`}
+          onClick={() => handleButtonClick(1)}
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -62,7 +67,10 @@ function Toolbar({ onSlideChange, activeSlide }) {
             />
           </svg>
         </button>
-        <button className={`Toolbar-icon ${selectedButton === 2 ? "selected" : ""}`} onClick={() => handleButtonClick(2)}>
+        <button
+          className={`Toolbar-icon ${selectedButton === 2 ? "selected" : ""}`}
+          onClick={() => handleButtonClick(2)}
+        >
           <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
             <path
               fill="#8800ff"
@@ -70,7 +78,10 @@ function Toolbar({ onSlideChange, activeSlide }) {
             />
           </svg>
         </button>
-        <button className={`Toolbar-icon ${selectedButton === 3 ? "selected" : ""}`} onClick={() => handleButtonClick(3)}>
+        <button
+          className={`Toolbar-icon ${selectedButton === 3 ? "selected" : ""}`}
+          onClick={() => handleButtonClick(3)}
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -85,7 +96,10 @@ function Toolbar({ onSlideChange, activeSlide }) {
             />
           </svg>
         </button>
-        <button className={`Toolbar-icon ${selectedButton === 4 ? "selected" : ""}`} onClick={() => handleButtonClick(4)}>
+        <button
+          className={`Toolbar-icon ${selectedButton === 4 ? "selected" : ""}`}
+          onClick={() => handleButtonClick(4)}
+        >
           <svg
             fill="#686868"
             viewBox="0 0 1024 1024"

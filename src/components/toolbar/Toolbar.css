@@ -12,7 +12,7 @@
   align-items: center;
 
   border-top: 1px solid var(--border-color-dark);
-  box-shadow: 0 -10px 10px -5px var(--shadow-color); /* Top shadow */
+  box-shadow: 0 -10px 10px -5px var(--shadow-color); 
 }
 
 .Toolbar .Toolbar-icon-container {
@@ -33,22 +33,22 @@
   border-radius: var(--border-radius);
   padding: var(--icon-padding);
   cursor: pointer;
-  transition: background-color var(--animation-duration) ease;
+  transition: background-color var(--animation-duration) ease,
+    filter var(--animation-duration) ease;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Toolbar-icon.selected {
-  /* background-color: var(--selected-color) !important; */
-  filter: brightness(2.0);
-  background-color: transparent;
+.Toolbar .Toolbar-icon-container .Toolbar-icon:hover {
+  background-color: var(--background-color-dark);
 }
 
-.Toolbar .Toolbar-icon-container .Toolbar-icon:hover {
-  background-color: transparent;
+.no-hover .Toolbar .Toolbar-icon-container .Toolbar-icon:hover {
+  background-color: var(--background-color-light);
 }
 
 .Toolbar .Toolbar-icon-container .Toolbar-icon.selected {
-  background-color: transparent;
+  filter: brightness(2);
+  background-color: var(--background-color-darker) !important;
 }
