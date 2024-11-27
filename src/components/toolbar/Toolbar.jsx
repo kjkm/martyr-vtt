@@ -12,10 +12,43 @@ function Toolbar({ onSlideChange, activeSlide }) {
     onSlideChange(index);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const modifierKey = "altKey";
+      if (event[modifierKey]) {
+        switch (event.key.toLowerCase()) {
+          case "g":
+            handleButtonClick(0);
+            break;
+          case "h":
+            handleButtonClick(1);
+            break;
+          case "j":
+            handleButtonClick(2);
+            break;
+          case "k":
+            handleButtonClick(3);
+            break;
+          case "l":
+            handleButtonClick(4);
+            break;
+          default:
+            break;
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <div className="Toolbar">
-      <div className="Toolbar-icon-container" >
-      <button
+      <div className="Toolbar-icon-container">
+        <button
           className={`Toolbar-icon ${selectedButton === 0 ? "selected" : ""}`}
           onClick={() => handleButtonClick(0)}
         >

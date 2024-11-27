@@ -1,16 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Map from "./map/Map";
-import ToggleButton from "./togglebutton/ToggleButton";
-import MapSummary from "./mapsummary/MapSummary";
 import DrawerTab from "./drawertab/DrawerTab";
 import "./MapDrawer.css";
 
 function MapDrawer() {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  };
+  const toggleCollapse = useCallback(() => {
+    setIsCollapsed((prevIsCollapsed) => !prevIsCollapsed);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const modifierKey = "altKey";
+      if (event[modifierKey]) {
+        switch (event.key.toLowerCase()) {
+          case "m":
+            toggleCollapse();
+            break;
+          default:
+            break;
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [toggleCollapse]);
 
   return (
     <div className={`MapDrawer ${isCollapsed ? "MapDrawer-collapsed" : ""}`}>
@@ -18,7 +37,7 @@ function MapDrawer() {
         <Map />
       </div>
       <div className="MapDrawer-tab">
-        <DrawerTab toggleCollapse={toggleCollapse}/>
+        <DrawerTab toggleCollapse={toggleCollapse} />
       </div>
     </div>
   );

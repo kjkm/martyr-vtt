@@ -6,7 +6,7 @@ function DrawerTab({ toggleCollapse }) {
   return (
     <div className="DrawerTab" id="drawer-tab">
       <div className="SummaryContainer SummaryContainer-left">
-        <MapSummary isLeftPanel={true}>Zaun</MapSummary>
+        <MapSummary isLeftPanel={true}>Helm's Deep</MapSummary>
       </div>
 
       <ToggleButton onClick={toggleCollapse}>
