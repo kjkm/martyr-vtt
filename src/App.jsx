@@ -3,6 +3,7 @@ import MapDrawer from "./components/mapdrawer/MapDrawer";
 import Toolbar from "./components/toolbar/Toolbar";
 import CenterPanel from "./components/centerpanel/CenterPanel";
 import Slide from "./components/centerpanel/carousel/slide/Slide";
+import CharacterSheet from "./components/centerpanel/carousel/charactersheet/CharacterSheet";
 import ScriptWindow from "./components/centerpanel/carousel/scriptwindow/ScriptWindow";
 import CompanionWindow from "./components/centerpanel/carousel/companionwindow/CompanionWindow";
 import "./App.css";
@@ -50,12 +51,22 @@ function App() {
     setMessages([...messages, { type: "user", content: message }]);
   };
 
+  document.addEventListener("touchstart", () => {
+    document.body.classList.add("no-hover");
+  });
+
+  document.addEventListener("mousemove", () => {
+    document.body.classList.remove("no-hover");
+  });
+
   return (
     <div className="App">
       <MapDrawer />
-      <CenterPanel activeSlide={activeSlide}>
+      <CenterPanel onSlideChange={handleSlideChange} activeSlide={activeSlide}>
         <Slide>Rulebook</Slide>
-        <Slide>Character</Slide>
+        <Slide>
+          <CharacterSheet character={companions[0]} />
+        </Slide>
         <Slide>Playmat</Slide>
         <Slide>
           <ScriptWindow messages={messages} onSendMessage={handleSendMessage} />

@@ -1,0 +1,51 @@
+.CharacterSheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--background-color-light);
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.CharacterSheet-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.CharacterSheet-thumbnail {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.CharacterSheet-name {
+  margin: 0;
+  font-size: 1.5em;
+  color: var(--text-color-dark);
+}
+
+.CharacterSheet-attributes {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.CharacterSheet-attributes p {
+  margin: 5px 0;
+  font-size: 1.1em;
+  color: var(--text-color-dark);
+}
+
+.CharacterSheet-details {
+  width: 100%;
+  text-align: left;
+}

@@ -1,0 +1,67 @@
+.FoundationTracker {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Foundation-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  padding: var(--item-spacing);
+}
+
+.Foundation-label {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.Foundation-zone {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  position: relative;
+}
+
+.Foundation-zone-label {
+  position: absolute;
+  bottom: 2px; /* Keep the label inside the box */
+  font-size: 0.6em; /* Make the text slightly smaller */
+  color: gray; /* Set the label text color to gray */
+}
+
+.Foundation-value {
+  font-size: 1em;
+}
+
+.Foundation-vice .Foundation-value {
+  color: green;
+}
+
+.Foundation-balance .Foundation-value {
+  color: white;
+}
+
+.Foundation-virtue .Foundation-value {
+  color: red;
+}
+
+.Foundation-arrow {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.Foundation-arrow:focus {
+  outline: none;
+}
