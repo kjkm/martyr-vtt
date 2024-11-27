@@ -18,6 +18,11 @@ function FoundationTracker() {
   });
 
   const handleArrowClick = (type, direction) => {
+    // Trigger haptic feedback
+    if (navigator.vibrate) {
+      navigator.vibrate(50); // Vibrate for 50 milliseconds
+    }
+
     setPoints((prevPoints) => {
       const newPoints = { ...prevPoints };
 
@@ -43,6 +48,26 @@ function FoundationTracker() {
     });
   };
 
+  const calculateStyle = (points) => {
+    const baseSize = 16;
+    const increment = 3;
+    const minSize = 12;
+    const maxSize = 26;
+    const fontSize = baseSize + points * increment;
+    const clampedFontSize = Math.min(Math.max(fontSize, minSize), maxSize);
+
+    const baseOpacity = 0.5;
+    const maxOpacity = 1;
+    const opacityIncrement = 0.1;
+    const opacity = baseOpacity + points * opacityIncrement;
+    const clampedOpacity = Math.min(opacity, maxOpacity);
+
+    return {
+      fontSize: `${clampedFontSize}px`,
+      opacity: clampedOpacity,
+    };
+  };
+
   return (
     <div className="FoundationTracker">
       {foundationTypes.map((type) => (
@@ -57,18 +82,27 @@ function FoundationTracker() {
             ↑
           </button>
           <div className="Foundation-zone Foundation-vice">
-            <span className="Foundation-value">
+            <span
+              className="Foundation-value"
+              style={calculateStyle(points[type].vice)}
+            >
               {points[type].vice > 0 && `-${points[type].vice}`}
             </span>
             <span className="Foundation-zone-label">{labels[type].vice}</span>
           </div>
           <div className="Foundation-zone Foundation-balance">
-            <span className="Foundation-value">
+            <span
+              className="Foundation-value"
+              style={calculateStyle(points[type].balance)}
+            >
               {points[type].balance > 0 ? points[type].balance : ""}
             </span>
           </div>
           <div className="Foundation-zone Foundation-virtue">
-            <span className="Foundation-value">
+            <span
+              className="Foundation-value"
+              style={calculateStyle(points[type].virtue)}
+            >
               {points[type].virtue > 0 && `+${points[type].virtue}`}
             </span>
             <span className="Foundation-zone-label">{labels[type].virtue}</span>
