@@ -20,6 +20,7 @@ function App() {
   const companions = [
     {
       name: "Aragorn",
+      epithet: "The Dúnadan",
       thumbnail: "path/to/aragorn.jpg",
       body: 10,
       mind: 8,
@@ -27,6 +28,7 @@ function App() {
     },
     {
       name: "Legolas",
+      epithet: "Prince of Mirkwood",
       thumbnail: "path/to/legolas.jpg",
       body: 9,
       mind: 9,
@@ -34,6 +36,7 @@ function App() {
     },
     {
       name: "Gimli",
+      epithet: "Son of the Mountain",
       thumbnail: "path/to/gimli.jpg",
       body: 10,
       mind: 7,
@@ -63,7 +66,9 @@ function App() {
     <div className="App">
       <MapDrawer />
       <CenterPanel onSlideChange={handleSlideChange} activeSlide={activeSlide}>
-        <Slide>Rulebook</Slide>
+        <Slide>
+          Rulebook
+        </Slide>
         <Slide>
           <CharacterSheet character={companions[0]} />
         </Slide>
