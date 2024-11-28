@@ -1,12 +1,16 @@
 import { useState } from "react";
-import MapDrawer from "./components/mapdrawer/MapDrawer";
-import Toolbar from "./components/toolbar/Toolbar";
-import CenterPanel from "./components/centerpanel/CenterPanel";
-import Slide from "./components/centerpanel/carousel/slide/Slide";
-import CharacterSheet from "./components/centerpanel/carousel/charactersheet/CharacterSheet";
-import ScriptWindow from "./components/centerpanel/carousel/scriptwindow/ScriptWindow";
-import CompanionWindow from "./components/centerpanel/carousel/companionwindow/CompanionWindow";
+import MapDrawer from "./mapdrawer/MapDrawer";
+import Toolbar from "./toolbar/Toolbar";
+import CenterPanel from "./centerpanel/CenterPanel";
+import Slide from "./centerpanel/carousel/slide/Slide";
+import CharacterSheet from "./centerpanel/carousel/charactersheet/CharacterSheet";
+import ScriptWindow from "./centerpanel/carousel/scriptwindow/ScriptWindow";
+import CompanionWindow from "./centerpanel/carousel/companionwindow/CompanionWindow";
 import "./App.css";
+
+import Counter from "./counter/Counter";
+import { useSelector, useDispatch } from "react-redux";
+import { addMember } from "../state/party/partySlice";
 
 function App() {
   const [activeSlide, setActiveSlide] = useState(2);
@@ -67,7 +71,7 @@ function App() {
       <MapDrawer />
       <CenterPanel onSlideChange={handleSlideChange} activeSlide={activeSlide}>
         <Slide>
-          Rulebook
+          <Counter />
         </Slide>
         <Slide>
           <CharacterSheet character={companions[0]} />
