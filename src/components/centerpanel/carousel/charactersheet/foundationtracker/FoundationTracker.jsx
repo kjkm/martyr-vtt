@@ -18,7 +18,6 @@ function FoundationTracker() {
   });
 
   const handleArrowClick = (type, direction) => {
-    // Trigger haptic feedback
     if (navigator.vibrate) {
       navigator.vibrate(50); // Vibrate for 50 milliseconds
     }
@@ -62,57 +61,122 @@ function FoundationTracker() {
     const opacity = baseOpacity + points * opacityIncrement;
     const clampedOpacity = Math.min(opacity, maxOpacity);
 
+    const backgroundColor =
+      points > 0 ? "var(--background-color-lighter)" : "transparent";
+    const borderColor =
+      points > 0 ? "var(--border-color-dark)" : "var(--border-color-darker)";
+
     return {
       fontSize: `${clampedFontSize}px`,
       opacity: clampedOpacity,
+      backgroundColor: backgroundColor,
+      borderColor: borderColor,
     };
   };
 
   return (
     <div className="FoundationTracker">
       {foundationTypes.map((type) => (
-        <div key={type} className="Foundation-type">
-          <h3 className="Foundation-label">
-            {type.charAt(0).toUpperCase() + type.slice(1)}
-          </h3>
-          <button
-            className="Foundation-arrow Foundation-arrow-up"
-            onClick={() => handleArrowClick(type, "up")}
-          >
-            ↑
-          </button>
-          <div className="Foundation-zone Foundation-vice">
-            <span
-              className="Foundation-value"
-              style={calculateStyle(points[type].vice)}
+        <div className="Foundation-type-panel">
+          <div key={type} className="Foundation-type">
+            <button
+              className="Foundation-arrow Foundation-arrow-up"
+              onClick={() => handleArrowClick(type, "up")}
             >
-              {points[type].vice > 0 && `-${points[type].vice}`}
-            </span>
-            <span className="Foundation-zone-label">{labels[type].vice}</span>
-          </div>
-          <div className="Foundation-zone Foundation-balance">
-            <span
-              className="Foundation-value"
-              style={calculateStyle(points[type].balance)}
+              +
+            </button>
+            <div
+              className="Foundation-zone Foundation-vice"
+              style={{
+                backgroundColor:
+                  points[type].vice > 0
+                    ? "var(--background-color-lighter)"
+                    : "transparent",
+                borderColor:
+                  points[type].vice > 0
+                    ? "var(--border-color-dark)"
+                    : "var(--border-color-darker)",
+              }}
             >
-              {points[type].balance > 0 ? points[type].balance : ""}
-            </span>
-          </div>
-          <div className="Foundation-zone Foundation-virtue">
-            <span
-              className="Foundation-value"
-              style={calculateStyle(points[type].virtue)}
+              <span
+                className="Foundation-value"
+                style={calculateStyle(points[type].vice)}
+              >
+                {points[type].vice > 0 && `-${points[type].vice}`}
+              </span>
+              <span
+                className="Foundation-zone-label"
+                style={{
+                  color:
+                    points[type].vice === 0
+                      ? "var(--text-color-darker)"
+                      : "var(--text-color-dark)",
+                }}
+              >
+                {labels[type].vice}
+              </span>
+            </div>
+            <div
+              className="Foundation-zone Foundation-balance"
+              style={{
+                backgroundColor:
+                  points[type].balance > 0
+                    ? "var(--background-color-lighter)"
+                    : "transparent",
+                borderColor:
+                  points[type].balance > 0
+                    ? "var(--border-color-dark)"
+                    : "var(--border-color-darker)",
+              }}
             >
-              {points[type].virtue > 0 && `+${points[type].virtue}`}
-            </span>
-            <span className="Foundation-zone-label">{labels[type].virtue}</span>
+              <span
+                className="Foundation-value"
+                style={calculateStyle(points[type].balance)}
+              >
+                {points[type].balance > 0 ? points[type].balance : ""}
+              </span>
+            </div>
+            <div
+              className="Foundation-zone Foundation-virtue"
+              style={{
+                backgroundColor:
+                  points[type].virtue > 0
+                    ? "var(--background-color-lighter)"
+                    : "transparent",
+                borderColor:
+                  points[type].virtue > 0
+                    ? "var(--border-color-dark)"
+                    : "var(--border-color-darker)",
+              }}
+            >
+              <span
+                className="Foundation-value"
+                style={calculateStyle(points[type].virtue)}
+              >
+                {points[type].virtue > 0 && `+${points[type].virtue}`}
+              </span>
+              <span
+                className="Foundation-zone-label"
+                style={{
+                  color:
+                    points[type].virtue === 0
+                      ? "var(--text-color-darker)"
+                      : "var(--text-color-dark)",
+                }}
+              >
+                {labels[type].virtue}
+              </span>
+            </div>
+            <button
+              className="Foundation-arrow Foundation-arrow-down"
+              onClick={() => handleArrowClick(type, "down")}
+            >
+              -
+            </button>
           </div>
-          <button
-            className="Foundation-arrow Foundation-arrow-down"
-            onClick={() => handleArrowClick(type, "down")}
-          >
-            ↓
-          </button>
+          <h2 className="Foundation-label">
+            {type.toUpperCase()}
+          </h2>
         </div>
       ))}
     </div>

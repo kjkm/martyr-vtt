@@ -5,13 +5,19 @@ function CharacterSheet({ character }) {
   return (
     <div className="CharacterSheet">
       <div className="CharacterSheet-header">
-        <img
-          src={character.thumbnail}
-          alt={`${character.name}'s profile`}
-          className="CharacterSheet-thumbnail"
-        />
-        <h2 className="CharacterSheet-name">{character.name}</h2>
+        <div className="CharacterSheet-name">
+          <h2>{character.name}</h2>
+          <span className="CharacterSheet-epithet">{character.epithet}</span>
+        </div>
+        <div className="CharacterSheet-header-profile">
+          <img
+            src={character.thumbnail}
+            alt={`${character.name}'s profile`}
+            className="CharacterSheet-thumbnail"
+          />
+        </div>
       </div>
+      <hr className="CharacterSheet-divider" />
       <FoundationTracker />
       <div className="CharacterSheet-details">
         {/* Add more character details here */}
