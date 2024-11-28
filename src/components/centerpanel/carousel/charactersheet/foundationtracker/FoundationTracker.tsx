@@ -94,6 +94,12 @@ const FoundationTracker: React.FC<FoundationTrackerProps> = ({ characterIndex })
     soul: "Delusion",
   };
 
+  const balanceLabels = {
+    body: "Body",
+    mind: "Mind",
+    soul: "Soul",
+  };
+
   const virtueLabels = {
     body: "Valor",
     mind: "Clarity",
@@ -150,7 +156,7 @@ const FoundationTracker: React.FC<FoundationTrackerProps> = ({ characterIndex })
               +
             </button>
             {renderZone(type, "vice", viceLabels[type])}
-            {renderZone(type, "balance")}
+            {renderZone(type, "balance", balanceLabels[type])}
             {renderZone(type, "virtue", virtueLabels[type])}
             <button
               className="Foundation-arrow Foundation-arrow-down"
