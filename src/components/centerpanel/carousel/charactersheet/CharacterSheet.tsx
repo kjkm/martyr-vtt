@@ -6,12 +6,12 @@ import { RootState } from "../../../../state/store";
 import "./CharacterSheet.css";
 
 interface CharacterSheetProps {
-  character: Character;
+  characterIndex: number;
 }
 
-const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
+const CharacterSheet: React.FC<CharacterSheetProps> = ({ characterIndex }) => {
   const mainCharacter: Character | undefined = useSelector(
-    (state: RootState) => state.party.members[1]
+    (state: RootState) => state.party.members[characterIndex]
   );
 
   return (
@@ -36,7 +36,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({ character }) => {
         </div>
       </div>
       <hr className="CharacterSheet-divider" />
-      <FoundationTracker />
+      <FoundationTracker characterIndex={characterIndex}/>
       <div className="CharacterSheet-details">
         {/* Add more character details here */}
       </div>

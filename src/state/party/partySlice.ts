@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Foundation {
+export interface Foundation {
   max: number;
   current: number;
   vice: number;
@@ -8,10 +8,11 @@ interface Foundation {
   virtue: number;
 }
 
-interface Character {
+export interface Character {
   id: string;
   name: string;
   epithet: string;
+  thumbnail: string;
   rank: number;
   body: Foundation;
   mind: Foundation;
@@ -40,8 +41,41 @@ const partySlice = createSlice({
         (member) => member.id !== action.payload
       );
     },
+    setBodyFoundation: (
+      state,
+      action: PayloadAction<{ id: string; foundation: Foundation }>
+    ) => {
+      const character = state.members.find(
+        (member) => member.id === action.payload.id
+      );
+      if (character) {
+        character.body = action.payload.foundation;
+      }
+    },
+    setMindFoundation: (
+      state,
+      action: PayloadAction<{ id: string; foundation: Foundation }>
+    ) => {
+      const character = state.members.find(
+        (member) => member.id === action.payload.id
+      );
+      if (character) {
+        character.mind = action.payload.foundation;
+      }
+    },
+    setSoulFoundation: (
+      state,
+      action: PayloadAction<{ id: string; foundation: Foundation }>
+    ) => {
+      const character = state.members.find(
+        (member) => member.id === action.payload.id
+      );
+      if (character) {
+        character.soul = action.payload.foundation;
+      }
+    },
   },
 });
 
-export const { addMember, removeMember } = partySlice.actions;
+export const { addMember, removeMember, setBodyFoundation, setMindFoundation, setSoulFoundation } = partySlice.actions;
 export default partySlice.reducer;
