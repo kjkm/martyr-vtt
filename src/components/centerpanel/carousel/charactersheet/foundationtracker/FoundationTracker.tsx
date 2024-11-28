@@ -24,7 +24,7 @@ const FoundationTracker: React.FC<FoundationTrackerProps> = ({ characterIndex })
   const dispatch = useDispatch();
 
   if (!character) {
-    return <div>Loading...</div>; // Sometimes the character is undefined (usually not loaded yet)
+    return <div>Loading...</div>; // Handle the case where character is undefined
   }
 
   const handleArrowClick = (
@@ -66,7 +66,7 @@ const FoundationTracker: React.FC<FoundationTrackerProps> = ({ characterIndex })
 
   const calculateStyle = (points: number) => {
     if (isNaN(points)) {
-      points = 0; // If the character is undefined this can also be NaN
+      points = 0; // Default to 0 if points is NaN
     }
 
     const baseSize = 16;
@@ -86,6 +86,18 @@ const FoundationTracker: React.FC<FoundationTrackerProps> = ({ characterIndex })
       fontSize: `${clampedFontSize}px`,
       opacity: clampedOpacity,
     };
+  };
+
+  const viceLabels = {
+    body: "Arrogance",
+    mind: "Obsession",
+    soul: "Delusion",
+  };
+
+  const virtueLabels = {
+    body: "Valor",
+    mind: "Clarity",
+    soul: "Hope",
   };
 
   const renderZone = (
@@ -137,9 +149,9 @@ const FoundationTracker: React.FC<FoundationTrackerProps> = ({ characterIndex })
             >
               +
             </button>
-            {renderZone(type, "vice", "Vice")}
+            {renderZone(type, "vice", viceLabels[type])}
             {renderZone(type, "balance")}
-            {renderZone(type, "virtue", "Virtue")}
+            {renderZone(type, "virtue", virtueLabels[type])}
             <button
               className="Foundation-arrow Foundation-arrow-down"
               onClick={() => handleArrowClick(type, "down")}
