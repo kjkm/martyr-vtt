@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MapDrawer from "./mapdrawer/MapDrawer";
 import Toolbar from "./toolbar/Toolbar";
 import CenterPanel from "./centerpanel/CenterPanel";
@@ -10,18 +10,33 @@ import "./App.css";
 
 import Counter from "./counter/Counter";
 import { useSelector, useDispatch } from "react-redux";
-import { addMember } from "../state/party/partySlice";
+import { addMember, Character, Foundation } from "../state/party/partySlice";
+import { RootState } from "../state/store";
 
-function App() {
-  const [activeSlide, setActiveSlide] = useState(2);
-  const [messages, setMessages] = useState([
+interface Message {
+  type: "user" | "bot";
+  content: string;
+}
+
+interface Companion {
+  name: string;
+  epithet: string;
+  thumbnail: string;
+  body: number;
+  mind: number;
+  soul: number;
+}
+
+const App: React.FC = () => {
+  const [activeSlide, setActiveSlide] = useState<number>(2);
+  const [messages, setMessages] = useState<Message[]>([
     { type: "user", content: "hi" },
     { type: "bot", content: "hey" },
     { type: "user", content: "sup" },
     { type: "bot", content: "not much, u?" },
   ]);
 
-  const companions = [
+  const companions: Companion[] = [
     {
       name: "Aragorn",
       epithet: "The Dúnadan",
@@ -48,23 +63,53 @@ function App() {
     },
   ];
 
-  const handleSlideChange = (index) => {
+  /* REDUX PARTY CONVERSION WIP */
+  const party = useSelector((state: RootState) => state.party);
+  const dispatch = useDispatch();
+
+  const aragorn: Character = {
+    id: "0",
+    name: "Aragorn",
+    epithet: "The Dúnadan",
+    thumbnail: "path/to/aragorn.jpg",
+    rank: 1,
+    body: { max: 3, current: 3, vice: 0, balance: 3, virtue: 0 },
+    mind: { max: 3, current: 3, vice: 0, balance: 3, virtue: 0 },
+    soul: { max: 4, current: 4, vice: 0, balance: 4, virtue: 0 },
+  };
+
+  useEffect(() => {
+    dispatch(addMember(aragorn));
+  }, []);
+  /* END REDUX PARTY CONVERSION WIP */
+
+  const handleSlideChange = (index: number) => {
     console.log("Slide change:", index); // Debugging log
     setActiveSlide(index);
   };
 
-  const handleSendMessage = (message) => {
+  const handleSendMessage = (message: string) => {
     console.log("Message received:", message); // Debugging log
     setMessages([...messages, { type: "user", content: message }]);
   };
 
-  document.addEventListener("touchstart", () => {
-    document.body.classList.add("no-hover");
-  });
+  useEffect(() => {
+    const handleTouchStart = () => {
+      document.body.classList.add("no-hover");
+    };
 
-  document.addEventListener("mousemove", () => {
-    document.body.classList.remove("no-hover");
-  });
+    const handleMouseMove = () => {
+      document.body.classList.remove("no-hover");
+    };
+
+    document.addEventListener("touchstart", handleTouchStart);
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <div className="App">
@@ -74,7 +119,7 @@ function App() {
           <Counter />
         </Slide>
         <Slide>
-          <CharacterSheet character={companions[0]} />
+          <CharacterSheet characterIndex={0} />
         </Slide>
         <Slide>Playmat</Slide>
         <Slide>
@@ -87,6 +132,6 @@ function App() {
       <Toolbar onSlideChange={handleSlideChange} activeSlide={activeSlide} />
     </div>
   );
-}
+};
 
 export default App;
