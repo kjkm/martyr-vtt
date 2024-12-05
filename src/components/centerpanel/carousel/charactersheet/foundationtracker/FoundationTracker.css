@@ -1,22 +1,29 @@
 .FoundationTracker {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  gap: calc(var(--item-spacing) / 2);
 }
 
 .Foundation-type {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
   border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
-  padding: var(--item-spacing);
+  padding: calc(var(--item-spacing) / 2);
+  gap: calc(var(--item-spacing) / 2);
+}
+
+.Foundation-type-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .Foundation-label {
-  margin-bottom: 10px;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1em;
+  color: var(--text-color-dark);
 }
 
 .Foundation-zone {
@@ -27,19 +34,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px 0;
   position: relative;
 }
 
 .Foundation-zone-label {
   position: absolute;
-  bottom: 2px; /* Keep the label inside the box */
-  font-size: 0.6em; /* Make the text slightly smaller */
-  color: gray; /* Set the label text color to gray */
+  bottom: 2px;
+  font-size: 0.55em;
+  color: gray;
 }
 
 .Foundation-value {
   font-size: 1em;
+  transition: font-size 0.1s ease, opacity 0.1s ease;
 }
 
 .Foundation-vice .Foundation-value {
@@ -55,11 +62,11 @@
 }
 
 .Foundation-arrow {
+  color: var(--text-color-dark);
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 1.3em;
   cursor: pointer;
-  padding: 5px;
 }
 
 .Foundation-arrow:focus {

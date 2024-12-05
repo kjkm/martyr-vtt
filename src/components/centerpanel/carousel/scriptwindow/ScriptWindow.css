@@ -3,21 +3,21 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  height: calc( 100% - (var(--icon-height) + var(--icon-padding) * 2 + var(--item-spacing)) ); /* Subtract icon height */
-  margin-top: var(--icon-height); /* Add icon height */
+  height: 100%; 
   padding: 10px;
   padding-top: calc((var(--icon-height) + var(--icon-padding) * 2 var(--item-spacing)) * 2); /* Add more top padding */
   background-color: var(--background-color-light);
-  border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
   overflow-y: auto !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .ScriptWindow-messages {
-  flex-grow: 1; /* Allow messages container to take up remaining space */
+  flex-grow: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Align messages to the bottom */
+  justify-content: flex-end; 
   overflow-y: auto;
 }
 

@@ -1,0 +1,14 @@
+.SideMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.SideMenu-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-color-dark);
+}
