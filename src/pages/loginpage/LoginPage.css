@@ -1,0 +1,60 @@
+.LoginPage button {
+  text-align: center;
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--text-color-light);
+  width: 300px;
+  height: auto;
+  padding: var(--item-spacing);
+  gap: 2px;
+}
+
+.error-message {
+  color: red;
+  max-width: 100%; /* Ensure the error message does not exceed the container width */
+  word-wrap: break-word; /* Ensure the error message wraps within the container */
+}
+
+.LoginPage button:hover {
+  background-color: #8800ff;
+  color: white;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: var(--item-spacing);
+  margin-left: -80px;
+}
+
+.header-container svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.back-button {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0; /* Reset margin for mobile devices */
+  }
+
+  .back-button {
+    margin-bottom: -30px;
+    margin-left: -20px;
+  }
+}

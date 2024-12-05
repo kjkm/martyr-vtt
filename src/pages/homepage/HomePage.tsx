@@ -26,9 +26,9 @@ function HomePage() {
   };
 
   return (
-    <div className="HomePage">
+    <div className="HomePage App-page">
       <Header />
-      <div className="HomePage-content">
+      <div className="HomePage-content App-content">
         <h1>Welcome to Martyr!</h1>
         <p>A TTRPG for better stories.</p>
         <button className="HomePage-login-button" onClick={handleButtonClick}>

@@ -6,9 +6,3 @@
     height: 100%;
     width: 100%;
 }
-
-.GameSelectionPage-content {
-    height: 100%;
-    width: min(100%, var(--content-width));
-    color: white;
-}

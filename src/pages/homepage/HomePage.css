@@ -1,15 +1,8 @@
 .HomePage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+
 }
 
 .HomePage-content {
-  height: 100%;
-  width: min(100%, var(--content-width));
   display: flex;
   flex-direction: column;
   align-items: center;

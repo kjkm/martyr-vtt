@@ -8,6 +8,7 @@ import HomePage from "./homepage/HomePage";
 import GamePage from "./gamepage/GamePage";
 import GameSelectionPage from "./gameselectionpage/GameSelectionPage";
 import ProfilePage from "./profilepage/ProfilePage";
+import LoginPage from "./loginpage/LoginPage";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/game" element={<GamePage />} />
             <Route path="/mygames" element={<GameSelectionPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </BrowserRouter>
       </Provider>
