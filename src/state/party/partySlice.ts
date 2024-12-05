@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppThunk } from "../store";
+import { getFirestore, doc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 export interface Foundation {
   max: number;
@@ -78,4 +80,72 @@ const partySlice = createSlice({
 });
 
 export const { addMember, removeMember, setBodyFoundation, setMindFoundation, setSoulFoundation } = partySlice.actions;
+
+export const fetchParty = (partyId: string): AppThunk => async (dispatch) => {
+  const db = getFirestore();
+  const partyDoc = await doc(db, "parties", partyId).get();
+  if (partyDoc.exists()) {
+    dispatch(setParty(partyDoc.data() as PartyState));
+  }
+};
+
+export const addMemberToParty = (partyId: string, member: Character): AppThunk => async (dispatch) => {
+  const db = getFirestore();
+  const partyRef = doc(db, "parties", partyId);
+  await updateDoc(partyRef, {
+    members: arrayUnion(member),
+  });
+  dispatch(addMember(member));
+};
+
+export const removeMemberFromParty = (partyId: string, memberId: string): AppThunk => async (dispatch) => {
+  const db = getFirestore();
+  const partyRef = doc(db, "parties", partyId);
+  const partyDoc = await partyRef.get();
+  if (partyDoc.exists()) {
+    const members = partyDoc.data().members.filter((member: Character) => member.id !== memberId);
+    await updateDoc(partyRef, { members });
+    dispatch(removeMember(memberId));
+  }
+};
+
+export const updateBodyFoundation = (partyId: string, id: string, foundation: Foundation): AppThunk => async (dispatch) => {
+  const db = getFirestore();
+  const partyRef = doc(db, "parties", partyId);
+  const partyDoc = await partyRef.get();
+  if (partyDoc.exists()) {
+    const members = partyDoc.data().members.map((member: Character) =>
+      member.id === id ? { ...member, body: foundation } : member
+    );
+    await updateDoc(partyRef, { members });
+    dispatch(setBodyFoundation({ id, foundation }));
+  }
+};
+
+export const updateMindFoundation = (partyId: string, id: string, foundation: Foundation): AppThunk => async (dispatch) => {
+  const db = getFirestore();
+  const partyRef = doc(db, "parties", partyId);
+  const partyDoc = await partyRef.get();
+  if (partyDoc.exists()) {
+    const members = partyDoc.data().members.map((member: Character) =>
+      member.id === id ? { ...member, mind: foundation } : member
+    );
+    await updateDoc(partyRef, { members });
+    dispatch(setMindFoundation({ id, foundation }));
+  }
+};
+
+export const updateSoulFoundation = (partyId: string, id: string, foundation: Foundation): AppThunk => async (dispatch) => {
+  const db = getFirestore();
+  const partyRef = doc(db, "parties", partyId);
+  const partyDoc = await partyRef.get();
+  if (partyDoc.exists()) {
+    const members = partyDoc.data().members.map((member: Character) =>
+      member.id === id ? { ...member, soul: foundation } : member
+    );
+    await updateDoc(partyRef, { members });
+    dispatch(setSoulFoundation({ id, foundation }));
+  }
+};
+
 export default partySlice.reducer;

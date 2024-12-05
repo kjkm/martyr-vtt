@@ -1,0 +1,54 @@
+.AuthForm {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+.AuthForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.AuthForm h1 {
+    font-size: 1.5em;
+    color: var(--text-color-dark);
+    margin: 0;
+}
+
+.AuthForm input {
+    padding: 5px;
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius);
+    background-color: var(--background-color-light) !important; /* Ensure this color is applied */
+}
+
+.AuthForm label {
+    color: var(--text-color-dark);
+}
+
+.AuthForm .FormField {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.AuthForm button {
+    border-radius: var(--border-radius);
+    padding: 5px;
+    width: auto;
+    background-color: var(--background-color-light);
+    border: 1px solid var(--border-color-dark);
+    box-shadow: none; /* Remove any raised effect */
+    color: var(--text-color-dark);
+    cursor: pointer;
+}
