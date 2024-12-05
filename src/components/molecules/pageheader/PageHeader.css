@@ -6,6 +6,8 @@
   justify-content: center;
   align-items: center;
   padding: var(--item-spacing);
+  border-bottom: 1px solid var(--border-color-dark); 
+  box-shadow: 0 10px 10px -5px var(--shadow-color); 
 }
 
 .PageHeader-content {

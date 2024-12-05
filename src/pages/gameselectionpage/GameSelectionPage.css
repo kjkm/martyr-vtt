@@ -1,8 +1,60 @@
 .GameSelectionPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.GameSelectionPage-options {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: var(--item-spacing);
+}
+
+.GameSelectionPage-options svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.GameSelectionPage-options form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--item-spacing);
+  width: 100%;
+}
+
+.GameSelectionPage-options form button {
+  width: auto;
+}
+
+.GameSelectionPage-options input {
+  width: 100%;
+}
+
+.GameSelectionPage-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--item-spacing);
+  background-color: var(--background-color-dark);
+  width: 100%;
+  border-top: 1px solid var(--border-color-dark);
+  box-shadow: 0 -10px 10px -5px var(--shadow-color); 
+}
+
+.NewGame-button {
+  padding: var(--item-spacing);
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--accent-color-dark);
+  color: var(--text-color-lighter);
+  cursor: pointer;
+}
+
+.NewGame-button:hover {
+  background-color: var(--primary-color-dark);
 }
