@@ -10,7 +10,7 @@
     "cosmos": "npx cosmos",
     "cosmos-export": "npx cosmos-export",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --add"
   },
   "author": "",
   "license": "ISC",
