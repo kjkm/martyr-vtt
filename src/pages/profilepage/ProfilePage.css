@@ -2,6 +2,102 @@
 
 }
 
+.ProfilePage h1 {
+    color: var(--text-color-light);
+    margin: 0;
+}
+
+.ProfilePage p {
+    color: var(--text-color-dark);
+    margin: 0;
+}
+
+.ProfilePage-link {
+    color: var(--text-color-light);
+    text-decoration: none;
+    border: 1px solid var(--accent-color-dark);
+    border-radius: var(--border-radius);
+    padding: var(--item-spacing);
+    padding-top: calc(var(--item-spacing) / 2);
+    padding-bottom: calc(var(--item-spacing) / 2);
+    font-size: 0.8em;
+}
+
 .ProfilePage-content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--item-spacing);
+    gap: var(--item-spacing);
+}
+
+.ProfilePage-content-header {
+    display: flex;
+    align-items: center;
+}
+
+.ProfilePage-content-description {
+    margin: 0;
+}
+
+.ProfilePage-content-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.ProfilePage-game-list {
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius);
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-color-dark);
+    padding: var(--item-spacing);
+}
+
+.ProfilePage-game-list-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--item-spacing);
+}
+
+.ProfilePage-game-list-options-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--item-spacing);
+}
+
+.ProfilePage-game-list-table {
+    width: 100%;
+    border-collapse: separate; /* Use separate borders */
+    border-spacing: 0 0.5em; /* Adjust the spacing between rows */
+    font-size: 0.9em; /* Adjust the font size as needed */
+}
+
+.ProfilePage-game-list-table th,
+.ProfilePage-game-list-table td {
+    padding: 0.5em; 
+    text-align: left;
+}
+
+.ProfilePage-game-list-table th {
+    background-color: var(--background-color-light);
+}
+
+.ProfilePage-game-list-table td {
+    background-color: var(--background-color-dark);
+    border-bottom: 1px solid var(--border-color-dark); 
+}
+
+.ProfilePage-game-title {
+    width: 100%;
+}
+
+.ProfilePage-game-join {
     
 }
