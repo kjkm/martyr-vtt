@@ -19,7 +19,7 @@ function HomePage() {
 
   const handleButtonClick = () => {
     if (user) {
-      navigate("/mygames");
+      navigate("/games");
     } else {
       navigate("/login");
     }

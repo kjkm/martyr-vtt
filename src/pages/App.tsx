@@ -20,7 +20,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/game" element={<GamePage />} />
-            <Route path="/mygames" element={<GameSelectionPage />} />
+            <Route path="/games" element={<GameSelectionPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>

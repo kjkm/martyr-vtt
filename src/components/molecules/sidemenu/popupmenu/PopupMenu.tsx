@@ -62,12 +62,12 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ isOpen, onClose }) => {
               <>
                 <li>
                   <Link to="/profile" onClick={onClose}>
-                    Profile
+                    My Games
                   </Link>
                 </li>
                 <li>
-                  <Link to="/mygames" onClick={onClose}>
-                    Find Games
+                  <Link to="/games" onClick={onClose}>
+                    Find Group
                   </Link>
                 </li>
               </>
