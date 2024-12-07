@@ -6,12 +6,14 @@ import {
   createUserWithEmailAndPassword,
   User,
 } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../state/user/userSlice";
 import "./LoginPage.css";
 
 function LoginPage() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUserState] = useState<User | null>(null);
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,19 +21,26 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const db = getFirestore();
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          dispatch(setUser({ id: user.uid, name: userData.username }));
+        }
         navigate("/profile");
       } else {
-        setUser(null);
+        setUserState(null);
       }
     });
 
     return () => unsubscribe();
-  }, [navigate]);
+  }, [navigate, dispatch]);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,23 +50,23 @@ function LoginPage() {
       const auth = getAuth();
       const db = getFirestore();
       if (isLogin) {
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          dispatch(setUser({ id: user.uid, name: userData.username }));
+        }
         navigate("/profile");
       } else {
         if (password !== confirmPassword) {
           setError("Passwords do not match");
           return;
         }
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        await setDoc(doc(db, "users", user.uid), {
-          username,
-          email,
-        });
+        await setDoc(doc(db, "users", user.uid), { username });
+        dispatch(setUser({ id: user.uid, name: username }));
         navigate("/profile");
       }
     } catch (err) {
@@ -121,17 +130,15 @@ function LoginPage() {
             />
           </div>
           {!isLogin && (
-            <>
-              <div>
-                <label>Confirm Password:</label>
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
-              </div>
-            </>
+            <div>
+              <label>Confirm Password:</label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
           )}
           {error && <p className="error-message">{error}</p>}
           <button type="submit">{isLogin ? "Login" : "Register"}</button>

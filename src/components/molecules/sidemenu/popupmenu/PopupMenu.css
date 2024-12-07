@@ -82,7 +82,7 @@ form button:hover {
   background-color: var(--primary-color-dark);
 }
 
-.PopupMenu-logout {
+/* .PopupMenu-logout {
   margin-top: auto;
   padding: 10px;
   border: none;
@@ -94,7 +94,7 @@ form button:hover {
 
 .PopupMenu-logout:hover {
   background-color: var(--primary-color-dark);
-}
+} */
 
 .PopupMenu-switch {
   width: 100%;

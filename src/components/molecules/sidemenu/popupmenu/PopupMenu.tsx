@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, User } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../state/store";
+import { Link, useNavigate } from "react-router-dom";
 import "./PopupMenu.css";
 
 interface PopupMenuProps {
@@ -11,12 +12,8 @@ interface PopupMenuProps {
 
 const PopupMenu: React.FC<PopupMenuProps> = ({ isOpen, onClose }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [error, setError] = useState("");
+  const username = useSelector((state: RootState) => state.user.user.name);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const auth = getAuth();
@@ -27,115 +24,75 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ isOpen, onClose }) => {
     return () => unsubscribe();
   }, []);
 
-  const handleAuth = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      const auth = getAuth();
-      const db = getFirestore();
-      if (isLogin) {
-        await signInWithEmailAndPassword(auth, email, password);
-      } else {
-        if (password !== confirmPassword) {
-          setError("Passwords do not match");
-          return;
-        }
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        await setDoc(doc(db, "users", user.uid), {
-          username,
-          email,
-        });
-      }
-    } catch (err) {
-      setError((err as Error).message);
-    }
-  };
-
   const handleLogout = async () => {
     const auth = getAuth();
     await signOut(auth);
     setUser(null);
     onClose();
+    navigate("/");
   };
 
   return (
     <div className={`PopupMenu ${isOpen ? "open" : ""}`}>
       <div className="PopupMenu-content">
         <button className="PopupMenu-close" onClick={onClose}>
-          X
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 9.418C7.613 9.028 7.613 8.394 8 8.004C8.394 7.613 9.028 7.613 9.418 8.004L12 10.592L14.591 8.007C14.981 7.616 15.614 7.616 16.005 8.007C16.395 8.397 16.395 9.03 16.005 9.421L13.42 12.006L16.004 14.59C16.394 14.98 16.394 15.613 16.004 16.004C15.613 16.395 14.98 16.395 14.59 16.004L12 13.42L9.421 16.005C9.03 16.395 8.397 16.395 8.007 16.005C7.616 15.614 7.616 14.981 8.007 14.591L10.592 12.006L8 9.418Z"
+              fill="#686868"
+            />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12ZM3.007 12C3.007 16.967 7.033 20.993 12 20.993C16.967 20.993 20.993 16.967 20.993 12C20.993 7.033 16.967 3.007 12 3.007C7.033 3.007 3.007 7.033 3.007 12Z"
+              fill="#686868"
+            />
+          </svg>
         </button>
-        {user ? (
-          <div>
-            <p>Welcome, {user.email}</p>
-            <ul>
-              <li>
-                <Link to="/mygames" onClick={onClose}>Games</Link>
-              </li>
-              <li>
-                <Link to="/profile" onClick={onClose}>Profile</Link>
-              </li>
-            </ul>
-            <button className="PopupMenu-logout" onClick={handleLogout}>
-              Logout
-            </button>
-          </div>
-        ) : (
-          <div>
-            <form onSubmit={handleAuth}>
-            {!isLogin && (
-                <>
-                  <div>
-                    <label>Username:</label>
-                    <input
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                    />
-                  </div>
-                </>
+        <div>
+          {user ? <p>Welcome, {username}</p> : <p>Welcome</p>}
+          <ul>
+            {user && (
+              <>
+                <li>
+                  <Link to="/profile" onClick={onClose}>
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/mygames" onClick={onClose}>
+                    Find Games
+                  </Link>
+                </li>
+              </>
+            )}
+            <li>
+              {user ? (
+                <Link
+                  to="#"
+                  onClick={handleLogout}
+                  className="PopupMenu-logout"
+                >
+                  Logout
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={onClose}
+                  className="PopupMenu-logout"
+                >
+                  Log In
+                </Link>
               )}
-              <div>
-                <label>Email:</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label>Password:</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              {!isLogin && (
-                <>
-                  <div>
-                    <label>Confirm Password:</label>
-                    <input
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                </>
-              )}
-              {error && <p style={{ color: "red" }}>{error}</p>}
-              <button type="submit">{isLogin ? "Login" : "Register"}</button>
-            </form>
-            <button className="PopupMenu-switch" onClick={() => setIsLogin(!isLogin)}>
-              {isLogin ? "Register" : "Switch to Login"}
-            </button>
-          </div>
-        )}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
