@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./GameSelectionPage.css";
 import PageHeader from "../../components/molecules/pageheader/PageHeader";
 
@@ -28,8 +28,9 @@ const GameSelectionPage: React.FC = () => {
         <div className="GameSelectionPage-options">
           <form>
             <input type="text" placeholder="Search..." />
-            <button type="submit">
+            <button className="GameSelection-search-button" type="submit">
               <svg
+                className="GameSelection-search-icon"
                 width="800px"
                 height="800px"
                 viewBox="0 0 24 24"
@@ -46,7 +47,40 @@ const GameSelectionPage: React.FC = () => {
               </svg>
             </button>
           </form>
-          <div className="GameSelectionPage-games"></div>
+        </div>
+        <div className="GameSelectionPage-games">
+          <table className="GameSelection-game-list-table">
+            <thead>
+              <tr>
+                <th className="GameSelection-game-title">Name</th>
+                <th className="GameSelection-player-count">Players</th>
+                <th className="GameSelection-game-join">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Game 1</td>
+                <td>4/5</td>
+                <td>
+                  <Link className="GameSelection-link" to="/games/1">Join</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>Game 2</td>
+                <td>1/5</td>
+                <td>
+                  <Link className="GameSelection-link" to="/games/2">Join</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>Game 3</td>
+                <td>3/5</td>
+                <td>
+                  <Link className="GameSelection-link" to="/games/3">Join</Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div className="GameSelectionPage-footer">
