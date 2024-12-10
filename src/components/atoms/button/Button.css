@@ -1,0 +1,17 @@
+.Button {
+  width: 5rem;
+  font-size: 1rem;
+  color: var(--text-color-light);
+  background-color: var(--background-color-dark);
+  border: 1px solid #8800ff;
+  border-radius: var(--border-radius);
+  margin-top: var(--item-spacing);
+  padding: var(--item-spacing);
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.Button:hover {
+  background-color: #8800ff;
+  color: white;
+}
