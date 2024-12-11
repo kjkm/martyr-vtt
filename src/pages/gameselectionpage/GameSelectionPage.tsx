@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { getFirestore, collection, getDocs, updateDoc, doc, arrayUnion } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDoc,
+  getDocs,
+  updateDoc,
+  doc,
+  arrayUnion,
+} from "firebase/firestore";
 import "./GameSelectionPage.css";
 import PageHeader from "../../components/molecules/pageheader/PageHeader";
 
@@ -47,11 +55,40 @@ const GameSelectionPage: React.FC = () => {
 
     const db = getFirestore();
     const gameRef = doc(db, "games", gameId);
+    const gameSnap = await getDoc(gameRef);
+
+    if (!gameSnap.exists()) {
+      console.error("Game not found");
+      return;
+    }
+
+    const gameData = gameSnap.data();
+    const userRef = doc(db, "users", user.uid);
+
+    // Check if the user is the owner or already a player
+    if (
+      gameData.owner.id === user.uid ||
+      gameData.players.some((playerRef: any) => playerRef.id === user.uid)
+    ) {
+      console.log(
+        `User ${user.uid} is already the owner or a player in game ${gameId}`
+      );
+      navigate(`/games/${gameId}`);
+      return;
+    }
+
+    // Check if there are open slots
+    if (gameData.players.length >= gameData.maxPlayers) {
+      console.error("No open slots available in the game");
+      return;
+    }
 
     try {
+      // Add the user to the game's players array
       await updateDoc(gameRef, {
-        players: arrayUnion(user.uid),
+        players: arrayUnion(userRef),
       });
+
       console.log(`User ${user.uid} joined game ${gameId}`);
       navigate(`/games/${gameId}`);
     } catch (error) {
@@ -112,7 +149,9 @@ const GameSelectionPage: React.FC = () => {
                     {game.players?.length || 0}/{game.maxPlayers}
                   </td>
                   <td>
-                    {user && (game.owner === user.uid || game.players?.length >= game.maxPlayers) ? (
+                    {user &&
+                    (game.owner === user.uid ||
+                      game.players?.length >= game.maxPlayers) ? (
                       <button className="GameSelection-link" disabled>
                         Join
                       </button>
