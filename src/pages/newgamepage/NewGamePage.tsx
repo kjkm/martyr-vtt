@@ -3,12 +3,21 @@ import "./NewGamePage.css";
 import PageHeader from "../../components/molecules/pageheader/PageHeader";
 import Button from "../../components/atoms/button/Button";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, addDoc, updateDoc, doc, arrayUnion } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  arrayUnion,
+} from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const NewGamePage: React.FC = () => {
   const [maxPlayers, setMaxPlayers] = useState(4);
   const [gameName, setGameName] = useState("");
   const [gameDescription, setGameDescription] = useState("");
+  const navigate = useNavigate();
 
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMaxPlayers(Number(event.target.value));
@@ -33,17 +42,19 @@ const NewGamePage: React.FC = () => {
         name: gameName,
         description: gameDescription,
         maxPlayers,
-        owner: user.uid,
+        owner: doc(db, "users", user.uid),
+        players: [],
         createdAt: new Date(),
       });
 
       // Add the game document reference to the user's "games" in Firestore
       const userRef = doc(db, "users", user.uid);
       await updateDoc(userRef, {
-        games: arrayUnion(gameRef),
+        games: arrayUnion(doc(db, "games", gameRef.id)),
       });
 
       console.log("Game created with ID: ", gameRef.id);
+      navigate(`/games/${gameRef.id}`);
     } catch (error) {
       console.error("Error creating game: ", error);
     }
