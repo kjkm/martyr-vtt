@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { getFirestore, collection, getDocs, updateDoc, doc, arrayUnion } from "firebase/firestore";
 import "./GameSelectionPage.css";
 import PageHeader from "../../components/molecules/pageheader/PageHeader";
 
 const GameSelectionPage: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
+  const [games, setGames] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,13 +24,57 @@ const GameSelectionPage: React.FC = () => {
     return () => unsubscribe();
   }, [navigate]);
 
+  useEffect(() => {
+    const fetchGames = async () => {
+      const db = getFirestore();
+      const gamesCollection = collection(db, "games");
+      const gamesSnapshot = await getDocs(gamesCollection);
+      const gamesList = gamesSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setGames(gamesList);
+    };
+
+    fetchGames();
+  }, []);
+
+  const handleJoinGame = async (gameId: string) => {
+    if (!user) {
+      console.error("User not logged in");
+      return;
+    }
+
+    const db = getFirestore();
+    const gameRef = doc(db, "games", gameId);
+
+    try {
+      await updateDoc(gameRef, {
+        players: arrayUnion(user.uid),
+      });
+      console.log(`User ${user.uid} joined game ${gameId}`);
+      navigate(`/games/${gameId}`);
+    } catch (error) {
+      console.error("Error joining game: ", error);
+    }
+  };
+
+  const filteredGames = games.filter((game) =>
+    game.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="GameSelectionPage">
       <PageHeader />
       <div className="GameSelectionPage-content App-content">
         <div className="GameSelectionPage-options">
-          <form>
-            <input type="text" placeholder="Search..." />
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <button className="GameSelection-search-button" type="submit">
               <svg
                 className="GameSelection-search-icon"
@@ -58,33 +105,36 @@ const GameSelectionPage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Game 1</td>
-                <td>4/5</td>
-                <td>
-                  <Link className="GameSelection-link" to="/games/1">Join</Link>
-                </td>
-              </tr>
-              <tr>
-                <td>Game 2</td>
-                <td>1/5</td>
-                <td>
-                  <Link className="GameSelection-link" to="/games/2">Join</Link>
-                </td>
-              </tr>
-              <tr>
-                <td>Game 3</td>
-                <td>3/5</td>
-                <td>
-                  <Link className="GameSelection-link" to="/games/3">Join</Link>
-                </td>
-              </tr>
+              {filteredGames.map((game) => (
+                <tr key={game.id}>
+                  <td>{game.name}</td>
+                  <td>
+                    {game.players?.length || 0}/{game.maxPlayers}
+                  </td>
+                  <td>
+                    {user && (game.owner === user.uid || game.players?.length >= game.maxPlayers) ? (
+                      <button className="GameSelection-link" disabled>
+                        Join
+                      </button>
+                    ) : (
+                      <button
+                        className="GameSelection-link"
+                        onClick={() => handleJoinGame(game.id)}
+                      >
+                        Join
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
       <div className="GameSelectionPage-footer">
-        <button className="NewGame-button">Create New Game</button>
+        <Link to="/games/new" className="NewGame-button">
+          Create New Game
+        </Link>
       </div>
     </div>
   );

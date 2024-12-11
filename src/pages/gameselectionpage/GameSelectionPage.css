@@ -90,10 +90,13 @@
   background-color: var(--accent-color-dark);
   color: var(--text-color-lighter);
   cursor: pointer;
+  font-size: 0.8em;
+  text-decoration: none;
 }
 
 .NewGame-button:hover {
-  background-color: var(--primary-color-dark);
+  background-color: var(--accent-color-darker);
+  color: white;
 }
 
 .GameSelectionPage-games {

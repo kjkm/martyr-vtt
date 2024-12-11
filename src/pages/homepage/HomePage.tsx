@@ -3,6 +3,7 @@ import "./HomePage.css";
 import Header from "../../components/molecules/pageheader/PageHeader";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/atoms/button/Button";
 
 function HomePage() {
   const [user, setUser] = useState<User | null>(null);
@@ -31,9 +32,9 @@ function HomePage() {
       <div className="HomePage-content App-content">
         <h1>Welcome to Martyr!</h1>
         <p>A TTRPG for better stories.</p>
-        <button className="HomePage-login-button" onClick={handleButtonClick}>
+        <Button onClick={handleButtonClick}>
           {user ? "Play" : "Login"}
-        </button>
+        </Button>
       </div>
     </div>
   );
