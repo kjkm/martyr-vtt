@@ -1,0 +1,74 @@
+.GameOverviewPage-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--item-spacing);
+  gap: var(--item-spacing);
+}
+
+.GameOverviewPage ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.GameOverviewPage li {
+  margin-bottom: 0.5em;
+  color: var(--text-color-dark);
+}
+
+.GameOverviewPage button {
+  padding: var(--item-spacing);
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--accent-color-dark);
+  color: var(--text-color-lighter);
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.GameOverviewPage button:hover {
+  background-color: var(--accent-color-darker);
+}
+
+.GameOverviewPage-game-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--item-spacing);
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius);
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+  width: 100%;
+}
+
+.game-owner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.game-players {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.game-description {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.GameOverviewPage-member-box {
+  border: 1px solid var(--border-color-dark);
+  height: 100%;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color-dark);
+  padding: var(--item-spacing);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-color-dark);
+}
