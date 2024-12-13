@@ -1,0 +1,26 @@
+.MapPin-pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.MapPin p {
+  font-size: 0.8em;
+  background-color: rgba(128, 128, 128, 0.5);
+  padding: 2px 4px;
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(4px);
+  color: white;
+  border: 1px solid var(--accent-color-dark);
+}
+
+.MapPin-pin svg {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.MapPin-pin:hover svg {
+  transform: scale(1.2) rotate(180deg);
+  filter: brightness(1.5);
+}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import PageHeader from "../../components/molecules/pageheader/PageHeader";
+import MapContainer from "../../components/molecules/mapcontainer/MapContainer";
 import "./VttPage.css";
 
 const VttPage: React.FC = () => {
@@ -25,7 +27,9 @@ const VttPage: React.FC = () => {
 
       if (gameSnap.exists()) {
         const game = gameSnap.data();
-        const isPlayer = game.players.some((playerRef: any) => playerRef.id === user.uid);
+        const isPlayer = game.players.some(
+          (playerRef: any) => playerRef.id === user.uid
+        );
 
         if (!isPlayer && game.owner.id !== user.uid) {
           navigate(`/games/${gameId}`);
@@ -40,13 +44,24 @@ const VttPage: React.FC = () => {
     fetchGameData();
   }, [gameId, navigate]);
 
+  const backgroundImage = "../../../assets/example-city.webp";
+
+  const locations = [
+    { name: "Chapel", x: 47.25, y: 35 },
+    { name: "Town Hall", x: 65.5, y: 50 },
+    { name: "The Fountain", x: 41.5, y: 68 },
+  ];
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="VttPage">
-      <h1>VttPage</h1>
+    <div className="VttPage App-page">
+      <PageHeader />
+      <div className="VttPage-content App-content">
+        <MapContainer backgroundImage={backgroundImage} locations={locations} />
+      </div>
     </div>
   );
 };

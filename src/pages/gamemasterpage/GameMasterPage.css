@@ -1,0 +1,12 @@
+.GameMasterPage {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.GameMasterPage-content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--item-spacing);
+  gap: var(--item-spacing);
+}
