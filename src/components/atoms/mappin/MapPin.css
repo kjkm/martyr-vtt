@@ -8,8 +8,9 @@
 
 .MapPin p {
   font-size: 0.8em;
-  background-color: rgba(128, 128, 128, 0.5);
+  background-color: var(--overlay-color-dark);
   padding: 2px 4px;
+  gap: var(--item-spacing);
   border-radius: var(--border-radius);
   backdrop-filter: blur(4px);
   color: white;

@@ -1,0 +1,46 @@
+.Tooltip-container {
+  position: relative;
+}
+
+.Tooltip-collapse-button {
+  position: absolute;
+  top: -30px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.Tooltip-box {
+  position: absolute;
+  bottom: 10%; /* Position the tooltip above the pin */
+  margin-bottom: var(--item-spacing);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--overlay-color-dark);
+  border: 1px solid var(--accent-color-dark);
+  border-radius: var(--border-radius);
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  width: 300px;
+  max-height: 600px;
+  overflow-y: auto;
+  text-align: center;
+  color: var(--text-color-lighter);
+  font-style: italic;
+}
+
+.Tooltip-box.expanded {
+  opacity: 1;
+  visibility: visible;
+}
+
+.Tooltip-box.collapsed {
+  opacity: 0;
+  visibility: hidden;
+}

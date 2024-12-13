@@ -7,9 +7,21 @@ const GameMasterPage: React.FC = () => {
   const backgroundImage = "/maps/default-map.webp";
 
   const locations = [
-    { name: "Mt. Dragonstone", x: 51, y: 43 },
-    { name: "Salt Town", x: 35, y: 62 },
-    { name: "The Riverlands", x: 67, y: 61.5 },
+    { 
+      name: "Mt. Dragonstone", 
+      description: "A large mountain where dragons are said to live.",
+      x: 51, y: 43 
+    },
+    { 
+      name: "Salt Town", 
+      description: "A town known for its salt mines.",
+      x: 35, y: 62 
+    },
+    { 
+      name: "The Riverlands", 
+      description: "A fertile region with many rivers.",
+      x: 67, y: 61.5 
+    },
   ];
 
   return (

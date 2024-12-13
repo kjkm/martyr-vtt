@@ -1,17 +1,55 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import { KeepScale } from "react-zoom-pan-pinch";
+import Tooltip from "../tooltip/Tooltip";
 import "./MapPin.css";
 
 interface MapPinProps {
   locationName: string;
+  locationDescription: string;
   style?: CSSProperties;
+  zoomToElement: (id: string) => void;
 }
 
-const MapPin: React.FC<MapPinProps> = ({ locationName, style }) => {
+const MapPin: React.FC<MapPinProps> = ({
+  locationName,
+  locationDescription = "No description available.",
+  style,
+  zoomToElement,
+}) => {
+  const [isTooltipExpanded, setIsTooltipExpanded] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsTooltipExpanded(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsTooltipExpanded(false);
+  };
+
+  const handleClick = () => {
+    if (!isTooltipExpanded) {
+      setIsTooltipExpanded(true);
+    }
+    zoomToElement(`MapPin-${locationName}`);
+  };
+
+  const handleCollapse = () => {
+    setIsTooltipExpanded(false);
+  };
+
   return (
     <div className="MapPin" style={style}>
       <KeepScale>
-        <div className="MapPin-pin">
+        <div
+          id={`MapPin-${locationName}`}
+          className="MapPin-pin"
+          onClick={handleClick}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <Tooltip isExpanded={isTooltipExpanded} onCollapse={handleCollapse}>
+            {locationDescription}
+          </Tooltip>
           <svg
             width="1.5em"
             height="1.5em"

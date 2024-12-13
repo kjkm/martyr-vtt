@@ -1,22 +1,16 @@
-import React, { CSSProperties } from "react";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import React, { CSSProperties, useRef } from "react";
+import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import MapPin from "../../atoms/mappin/MapPin";
 import "./MapContainer.css";
 
-interface Location {
-  name: string;
-  x: number;
-  y: number;
-}
-
 interface MapContainerProps {
   backgroundImage: string;
-  locations: Location[];
+  locations: { name: string; description: string; x: number; y: number }[];
 }
 
 const wrapperStyle: CSSProperties = {
   width: "100%",
-  height: "100%"
+  height: "100%",
 };
 
 const contentStyle: CSSProperties = {
@@ -28,12 +22,22 @@ const MapContainer: React.FC<MapContainerProps> = ({
   backgroundImage,
   locations,
 }) => {
+  const transformComponentRef = useRef<ReactZoomPanPinchRef | null>(null);
+
+  const zoomToElement = (id: string) => {
+    if (transformComponentRef.current) {
+      const { zoomToElement } = transformComponentRef.current;
+      zoomToElement(id);
+    }
+  };
+
   return (
     <div className="MapContainer">
       <TransformWrapper
         initialScale={1.2}
         centerOnInit={true}
         limitToBounds={true}
+        ref={transformComponentRef}
       >
         <TransformComponent
           wrapperStyle={wrapperStyle}
@@ -48,12 +52,14 @@ const MapContainer: React.FC<MapContainerProps> = ({
                 <MapPin
                   key={index}
                   locationName={location.name}
+                  locationDescription={location.description}
                   style={{
                     position: "absolute",
                     left: `${Math.min(location.x, 100)}%`,
                     top: `${Math.min(location.y, 100)}%`,
                     transform: "translate(-50%, -50%)",
                   }}
+                  zoomToElement={zoomToElement}
                 />
               ))}
             </div>

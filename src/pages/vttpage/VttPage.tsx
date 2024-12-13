@@ -47,9 +47,21 @@ const VttPage: React.FC = () => {
   const backgroundImage = "/maps/example-city.webp";
 
   const locations = [
-    { name: "Chapel", x: 48.8, y: 43.7 },
-    { name: "Town Hall", x: 57, y: 51 },
-    { name: "The Fountain", x: 46, y: 58.3 },
+    { 
+      name: "Chapel", 
+      description: "A small chapel where people come to pray.",
+      x: 48.8, y: 43.7 
+    },
+    { 
+      name: "Town Hall", 
+      description: "The town hall is where the mayor works.",
+      x: 57, y: 51 
+    },
+    { 
+      name: "The Fountain", 
+      description: "A beautiful fountain in the middle of the town square.",
+      x: 46, y: 58.3 
+    },
   ];
 
   if (loading) {
