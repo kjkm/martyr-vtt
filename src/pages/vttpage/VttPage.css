@@ -1,0 +1,7 @@
+.VttPage-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--item-spacing);
+    gap: var(--item-spacing);
+}
