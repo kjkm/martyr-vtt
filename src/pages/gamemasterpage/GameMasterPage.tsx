@@ -4,7 +4,7 @@ import PageHeader from "../../components/molecules/pageheader/PageHeader";
 import "./GameMasterPage.css";
 
 const GameMasterPage: React.FC = () => {
-  const backgroundImage = "../../../assets/default-map.webp";
+  const backgroundImage = "/maps/default-map.webp";
 
   const locations = [
     { name: "Mt. Dragonstone", x: 51, y: 43 },

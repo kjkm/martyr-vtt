@@ -44,12 +44,12 @@ const VttPage: React.FC = () => {
     fetchGameData();
   }, [gameId, navigate]);
 
-  const backgroundImage = "../../../assets/example-city.webp";
+  const backgroundImage = "/maps/example-city.webp";
 
   const locations = [
-    { name: "Chapel", x: 47.25, y: 35 },
-    { name: "Town Hall", x: 65.5, y: 50 },
-    { name: "The Fountain", x: 41.5, y: 68 },
+    { name: "Chapel", x: 48.8, y: 43.7 },
+    { name: "Town Hall", x: 57, y: 51 },
+    { name: "The Fountain", x: 46, y: 58.3 },
   ];
 
   if (loading) {
