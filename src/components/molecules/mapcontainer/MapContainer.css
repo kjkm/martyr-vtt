@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
