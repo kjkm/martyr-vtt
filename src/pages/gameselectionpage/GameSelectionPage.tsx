@@ -89,6 +89,11 @@ const GameSelectionPage: React.FC = () => {
         players: arrayUnion(userRef),
       });
 
+      // Add the game to the user's games array
+      await updateDoc(userRef, {
+        games: arrayUnion(gameRef),
+      });
+
       console.log(`User ${user.uid} joined game ${gameId}`);
       navigate(`/games/${gameId}`);
     } catch (error) {
