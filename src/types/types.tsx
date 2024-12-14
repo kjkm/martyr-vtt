@@ -3,7 +3,7 @@ export interface Environment {
     id: string;
     description?: string;
     backgroundImage?: string;
-    screenPosition?: {
+    screenPosition: {
         x: number;
         y: number;
     };
