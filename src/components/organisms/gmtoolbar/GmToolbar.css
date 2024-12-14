@@ -1,0 +1,25 @@
+.GmToolbar {
+    width: 100%;
+    background-color: var(--background-color-dark);
+    color: var(--text-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--item-spacing);
+    border-top: 1px solid var(--border-color-dark);
+    box-shadow: 0 -10px 10px -5px var(--shadow-color);
+}
+
+.GmToolbar-content {
+    width: 100%;
+    max-width: var(--content-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.GmToolbar svg {
+    width: var(--icon-height);
+    height: var(--icon-height);
+    fill: var(--text-color-light);
+}
