@@ -44,6 +44,8 @@ const VttPage: React.FC = () => {
     fetchGameData();
   }, [gameId, navigate]);
 
+  const environmentName = "City of Example";
+
   const backgroundImage = "/maps/example-city.webp";
 
   const locations = [
@@ -72,7 +74,7 @@ const VttPage: React.FC = () => {
     <div className="VttPage App-page">
       <PageHeader />
       <div className="VttPage-content App-content">
-        <MapContainer backgroundImage={backgroundImage} locations={locations} />
+        <MapContainer environmentName={environmentName} backgroundImage={backgroundImage} locations={locations} />
       </div>
     </div>
   );

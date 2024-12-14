@@ -9,6 +9,7 @@
   border: 1px solid var(--border-color-dark);
   border-radius: var(--border-radius);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .MapContainer-wrapper {
@@ -34,3 +35,34 @@
   border-radius: var(--border-radius);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
 }
+
+.MapNavigator {
+  position: absolute;
+  top: 0;
+  border: 1px solid var(--border-color-dark);
+  border-top: none;
+  border-radius: var(--border-radius);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: var(--overlay-color-dark);
+  padding: var(--item-spacing);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MapNavigator-button {
+  background: none;
+  border: none;
+  color: var(--text-color-lighter);
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.MapNavigator-environmentName {
+  flex-grow: 1;
+  text-align: center;
+  color: var(--text-color-lighter);
+}
+
