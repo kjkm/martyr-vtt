@@ -5,7 +5,7 @@ import PageHeader from "../../components/molecules/pageheader/PageHeader";
 import { Environment } from "../../types/types";
 import { setEnvironments } from "../../state/environment/environmentSlice";
 import { RootState } from "../../state/store";
-import GmToolbar from "../../components/organisms/gmtoolbar/GmToolBar";
+import GmToolbar from "../../components/organisms/gmtoolbar/GmToolbar";
 import "./GameMasterPage.css";
 import { current } from "@reduxjs/toolkit";
 
