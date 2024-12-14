@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import "./GmToolBar.css";
+import "./GmToolbar.css";
 
 import EnvironmentPanel from "../../molecules/environmentpanel/EnvironmentPanel";
 import { Environment } from "../../../types/types";
 
-interface GmToolBarProps {
+interface GmToolbarProps {
   environment: Environment | null;
 }
 
-const GmToolBar: React.FC<GmToolBarProps> = ({ environment }) => {
+const GmToolbar: React.FC<GmToolbarProps> = ({ environment }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -25,4 +25,4 @@ const GmToolBar: React.FC<GmToolBarProps> = ({ environment }) => {
   );
 };
 
-export default GmToolBar;
+export default GmToolbar;

@@ -5,7 +5,7 @@ import PageHeader from "../../components/molecules/pageheader/PageHeader";
 import { Environment } from "../../types/types";
 import { setEnvironments } from "../../state/environment/environmentSlice";
 import { RootState } from "../../state/store";
-import GmToolBar from "../../components/organisms/gmtoolbar/GmToolBar";
+import GmToolbar from "../../components/organisms/gmtoolbar/GmToolBar";
 import "./GameMasterPage.css";
 import { current } from "@reduxjs/toolkit";
 
@@ -31,7 +31,7 @@ const GameMasterPage: React.FC = () => {
       <div className="GameMasterPage-content App-content">
         {currentEnvironment && <MapContainer environment={currentEnvironment} />}
       </div>
-      <GmToolBar environment={environment}/>
+      <GmToolbar environment={environment}/>
     </div>
   );
 };
