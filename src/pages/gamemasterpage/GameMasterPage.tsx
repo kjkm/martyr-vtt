@@ -1,47 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MapContainer from "../../components/molecules/mapcontainer/MapContainer";
 import PageHeader from "../../components/molecules/pageheader/PageHeader";
 import { Environment } from "../../types/types";
+import { setEnvironments } from "../../state/environment/environmentSlice";
+import { RootState } from "../../state/store";
+import EnvironmentDirectory from "../../components/molecules/EnvironmentDirectory/EnvironmentDirectory";
 import "./GameMasterPage.css";
 
 const GameMasterPage: React.FC = () => {
-  const locations = [
-    { 
-      name: "Mt. Dragonstone", 
-      description: "A large mountain where dragons are said to live.",
-      x: 51, y: 43 
-    },
-    { 
-      name: "Salt Town", 
-      description: "A town known for its salt mines.",
-      x: 35, y: 62 
-    },
-    { 
-      name: "The Riverlands", 
-      description: "A fertile region with many rivers.",
-      x: 67, y: 61.5 
-    },
-  ];
+  const dispatch = useDispatch();
 
-  const environment: Environment = {
+  const initialEnvironment: Environment = {
     name: "The City of Example",
     id: "example-kingdom",
     description: "A kingdom with many different regions.",
-    backgroundImage: "/maps/default-map.webp",
-    screenPosition: { x: 0, y: 0 },
-    children: locations.map((location, index) => ({
-      name: location.name,
-      id: location.name.toLowerCase().replace(/ /g, "-"),
-      description: location.description,
-      screenPosition: { x: location.x, y: location.y }
-    }))
+    children: [
+      {
+        name: "Region 1",
+        id: "region-1",
+        screenPosition: { x: 0, y: 0 },
+        description: "A region within the kingdom.",
+        children: [
+          {
+            name: "Subregion 1",
+            id: "subregion-1",
+            screenPosition: { x: 0, y: 0 },
+            description: "A subregion within Region 1.",
+          },
+        ],
+      },
+    ],
   };
+
+  useEffect(() => {
+    dispatch(setEnvironments([initialEnvironment]));
+  }, [dispatch]);
+
+  const environment = useSelector((state: RootState) => state.environments.environments[0]);
 
   return (
     <div className="GameMasterPage App-page">
       <PageHeader />
       <div className="GameMasterPage-content App-content">
-        <MapContainer environment={environment} />
+        {environment && <MapContainer environment={environment} />}
+        {environment && <EnvironmentDirectory environment={environment} />}
       </div>
     </div>
   );
