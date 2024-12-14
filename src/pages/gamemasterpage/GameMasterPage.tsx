@@ -1,11 +1,10 @@
 import React from "react";
 import MapContainer from "../../components/molecules/mapcontainer/MapContainer";
 import PageHeader from "../../components/molecules/pageheader/PageHeader";
+import { Environment } from "../../types/types";
 import "./GameMasterPage.css";
 
 const GameMasterPage: React.FC = () => {
-  const backgroundImage = "/maps/default-map.webp";
-
   const locations = [
     { 
       name: "Mt. Dragonstone", 
@@ -24,11 +23,25 @@ const GameMasterPage: React.FC = () => {
     },
   ];
 
+  const environment: Environment = {
+    name: "The City of Example",
+    id: "example-kingdom",
+    description: "A kingdom with many different regions.",
+    backgroundImage: "/maps/default-map.webp",
+    screenPosition: { x: 0, y: 0 },
+    children: locations.map((location, index) => ({
+      name: location.name,
+      id: location.name.toLowerCase().replace(/ /g, "-"),
+      description: location.description,
+      screenPosition: { x: location.x, y: location.y }
+    }))
+  };
+
   return (
     <div className="GameMasterPage App-page">
       <PageHeader />
       <div className="GameMasterPage-content App-content">
-        <MapContainer backgroundImage={backgroundImage} locations={locations} />
+        <MapContainer environment={environment} />
       </div>
     </div>
   );

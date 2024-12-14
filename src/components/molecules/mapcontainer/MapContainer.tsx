@@ -5,12 +5,11 @@ import {
   ReactZoomPanPinchRef,
 } from "react-zoom-pan-pinch";
 import MapPin from "../../atoms/mappin/MapPin";
+import { Environment } from "../../../types/types";
 import "./MapContainer.css";
 
 interface MapContainerProps {
-  environmentName: string;
-  backgroundImage: string;
-  locations: { name: string; description: string; x: number; y: number }[];
+  environment: Environment;
 }
 
 const wrapperStyle: CSSProperties = {
@@ -65,9 +64,7 @@ const Overlay: React.FC<{
 );
 
 const MapContainer: React.FC<MapContainerProps> = ({
-  environmentName = "Environment",
-  backgroundImage,
-  locations,
+  environment,
 }) => {
   const transformComponentRef = useRef<ReactZoomPanPinchRef | null>(null);
 
@@ -84,7 +81,7 @@ const MapContainer: React.FC<MapContainerProps> = ({
 
   return (
     <div className="MapContainer">
-      <Overlay environmentName={environmentName} onBackClick={handleBackClick} />
+      <Overlay environmentName={environment.name} onBackClick={handleBackClick} />
       <TransformWrapper
         initialScale={1.2}
         centerOnInit={true}
@@ -99,17 +96,17 @@ const MapContainer: React.FC<MapContainerProps> = ({
             <div
               id="top-level-map"
               className="MapContainer-map"
-              style={{ backgroundImage: `url(${backgroundImage})` }}
+              style={{ backgroundImage: `url(${environment.backgroundImage})` }}
             >
-              {locations.map((location, index) => (
+              {environment.children?.map((location, index) => (
                 <MapPin
                   key={index}
                   locationName={location.name}
-                  locationDescription={location.description}
+                  locationDescription={location.description ?? ""}
                   style={{
                     position: "absolute",
-                    left: `${Math.min(location.x, 100)}%`,
-                    top: `${Math.min(location.y, 100)}%`,
+                    left: `${Math.min(location.screenPosition?.x ?? 0, 100)}%`,
+                    top: `${Math.min(location.screenPosition?.y ?? 0, 100)}%`,
                     transform: "translate(-50%, -50%)",
                   }}
                   zoomToElement={zoomToElement}

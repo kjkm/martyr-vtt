@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import PageHeader from "../../components/molecules/pageheader/PageHeader";
 import MapContainer from "../../components/molecules/mapcontainer/MapContainer";
 import "./VttPage.css";
+import { Environment } from "../../types/types";
 
 const VttPage: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
@@ -44,10 +45,6 @@ const VttPage: React.FC = () => {
     fetchGameData();
   }, [gameId, navigate]);
 
-  const environmentName = "City of Example";
-
-  const backgroundImage = "/maps/example-city.webp";
-
   const locations = [
     { 
       name: "Chapel", 
@@ -65,6 +62,19 @@ const VttPage: React.FC = () => {
       x: 46, y: 58.3 
     },
   ];
+  
+  const environment: Environment = {
+    name: "City of Example",
+    id: "example-city",
+    description: "A city with many buildings and streets.",
+    backgroundImage: "/maps/example-city.webp",
+    children: locations.map((location, index) => ({
+      name: location.name,
+      id: location.name.toLowerCase().replace(/ /g, "-"),
+      description: location.description,
+      screenPosition: { x: location.x, y: location.y }
+    }))
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -74,7 +84,7 @@ const VttPage: React.FC = () => {
     <div className="VttPage App-page">
       <PageHeader />
       <div className="VttPage-content App-content">
-        <MapContainer environmentName={environmentName} backgroundImage={backgroundImage} locations={locations} />
+        <MapContainer environment={environment} />
       </div>
     </div>
   );
