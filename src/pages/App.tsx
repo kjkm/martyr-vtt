@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "../state/store";
 
 import AuthChecker from "../components/atoms/authchecker/AuthChecker";
+import AuthDefault from "../components/atoms/authdefault/AuthDefault";
 
 import HomePage from "./homepage/HomePage";
 import GameSelectionPage from "./gameselectionpage/GameSelectionPage";
@@ -19,6 +20,7 @@ export default function App() {
     <div className="App">
       <Provider store={store}>
         <AuthChecker />
+        <AuthDefault />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
