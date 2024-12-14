@@ -13,26 +13,9 @@ const GameMasterPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const initialEnvironment: Environment = {
-    name: "The City of Example",
-    id: "example-kingdom",
+    name: "New Environment",
+    id: "",
     screenPosition: { x: 0, y: 0 },
-    description: "A kingdom with many different regions.",
-    children: [
-      {
-        name: "Region 1",
-        id: "region-1",
-        screenPosition: { x: 0, y: 0 },
-        description: "A region within the kingdom.",
-        children: [
-          {
-            name: "Subregion 1",
-            id: "subregion-1",
-            screenPosition: { x: 0, y: 0 },
-            description: "A subregion within Region 1.",
-          },
-        ],
-      },
-    ],
   };
 
   useEffect(() => {
