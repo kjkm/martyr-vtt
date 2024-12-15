@@ -4,6 +4,8 @@ import "./EnvironmentPanel.css";
 import { Environment } from "../../../types/types";
 import Tooltip from "../../atoms/tooltip/Tooltip";
 import EnvironmentDirectory from "../../atoms/environmentdirectory/EnvironmentDirectory";
+import EnvironmentSettings from "../../atoms/environmentsettings/EnvironmentSettings";
+
 
 interface EnvironmentPanelProps {
   environment: Environment | null;
@@ -15,8 +17,13 @@ const EnvironmentPanel: React.FC<EnvironmentPanelProps> = ({ environment, isExpa
   return (
     <div className="EnvironmentPanel">
       <Tooltip isExpanded={isExpanded} onCollapse={onCollapse}>
-        {environment ? (
+        {/* {environment ? (
           <EnvironmentDirectory environment={environment} />
+        ) : (
+          <div>No environment found.</div>
+        )} */}
+        {environment ? (
+          <EnvironmentSettings environment={environment} />
         ) : (
           <div>No environment found.</div>
         )}

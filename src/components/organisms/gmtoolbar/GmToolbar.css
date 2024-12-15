@@ -18,8 +18,12 @@
     align-items: center;
 }
 
-.GmToolbar svg {
-    width: var(--icon-height);
-    height: var(--icon-height);
-    fill: var(--text-color-light);
+.GmToolbar .Menu-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.GmToolbar .Tooltip-box {
+    height: 40vh;
 }

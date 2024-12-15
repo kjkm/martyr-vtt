@@ -1,0 +1,101 @@
+.EnvironmentSettings {
+}
+
+.EnvironmentSettings-header {
+}
+
+.EnvironmentSettings-header h1 {
+  font-size: 1.3em;
+  font-style: normal;
+  color: var(--text-color-lighter);
+  margin: 0;
+  padding: 0;
+}
+
+.EnvironmentSettings-header p {
+  font-size: 0.8em;
+  font-style: italic;
+  color: var(--text-color-light);
+  margin: 0;
+  padding: 0;
+  height: 1.5em;
+}
+
+.EnvironmentSettings hr {
+  width: 100%;
+  border: 1px solid var(--border-color-dark);
+}
+
+.EnvironmentSettings-content {
+  width: 100%;
+}
+
+.EnvironmentSettings-content table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+.EnvironmentSettings-content th,
+.EnvironmentSettings-content td {
+  padding: 8px;
+  border-top: 1px solid var(--border-color-dark);
+  border-bottom: 1px solid var(--border-color-dark);
+  border-left: none;
+  border-right: none;
+  color: var(--text-color-light);
+  font-size: 0.8em;
+  font-style: normal;
+}
+
+.EnvironmentSettings-content th {
+  text-align: left;
+  background-color: var(--background-color-darker);
+  border-top: none;
+}
+
+.EnvironmentSettings-content td {
+  background-color: var(--background-color-darker);
+}
+
+.EnvironmentSettings-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: var(--item-spacing);
+  width: 100%;
+}
+
+.EnvironmentSettings-field label {
+  font-size: 0.8em;
+  font-style: normal;
+  color: var(--text-color-dark);
+}
+
+.EnvironmentSettings-field input {
+  font-style: normal;
+  color: var(--text-color-light);
+  background-color: var(--overlay-color-dark);
+  border: 1px solid var(--border-color-dark);
+  width: 100%;
+}
+
+.EnvironmentSettings-field textarea {
+  font-style: normal;
+  font-family: "Roboto", sans-serif;
+  color: var(--text-color-light);
+  background-color: var(--overlay-color-dark);
+  border: 1px solid var(--border-color-dark);
+  width: 100%;
+}
+
+.EnvironmentSettings-screenPosition {
+  display: flex;
+  flex-direction: row;
+  gap: var(--item-spacing);
+}
+
+.EnvironmentSettings-screenPosition .EnvironmentSettings-field {
+  flex: 1; /* Ensure the fields inside screenPosition take equal space */
+}

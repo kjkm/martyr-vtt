@@ -1,0 +1,14 @@
+.EnvironmentPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 1rem;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+}
+
+.EnvironmentPanel .Tooltip-container {
+    max-height: 40%;
+}

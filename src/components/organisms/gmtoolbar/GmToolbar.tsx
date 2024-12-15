@@ -17,10 +17,18 @@ const GmToolbar: React.FC<GmToolbarProps> = ({ environment }) => {
 
   return (
     <div className="GmToolbar">
-      <button onClick={toggleExpand}>
-        {isExpanded ? "Collapse Environment Panel" : "Expand Environment Panel"}
-      </button>
-      <EnvironmentPanel environment={environment} isExpanded={isExpanded} onCollapse={toggleExpand} />
+      <div className="Menu-option">
+        <EnvironmentPanel
+          environment={environment}
+          isExpanded={isExpanded}
+          onCollapse={toggleExpand}
+        />
+        <button onClick={toggleExpand}>
+          {isExpanded
+            ? "Collapse Environment Panel"
+            : "Expand Environment Panel"}
+        </button>
+      </div>
     </div>
   );
 };

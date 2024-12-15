@@ -14,8 +14,16 @@ const GameMasterPage: React.FC = () => {
 
   const initialEnvironment: Environment = {
     name: "New Environment",
-    id: "",
+    id: "root",
     screenPosition: { x: 0, y: 0 },
+    children: [
+      {
+        name: "New Child",
+        id: "new-child",
+        screenPosition: { x: 50, y: 50 },
+        children: [],
+      },
+    ]
   };
 
   useEffect(() => {
